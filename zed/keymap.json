@@ -1,0 +1,9 @@
+[
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-w": "editor::DeleteToPreviousWordStart",
+      "cmd-shift-k": "editor::DeleteLine",
+    }
+  }
+]
