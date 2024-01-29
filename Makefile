@@ -1,35 +1,27 @@
 DOTFILE_PATH := $(shell pwd)
 
-$(HOME)/.%: %
+# default path for config files
+DOTCONFIG_PATH := $(HOME)/.config
+VSCODE_CONFIG_PATH := $(HOME)/Library/Application\ Support/Code/User
+
+$(HOME)/.%: .%
 	ln -sf $(DOTFILE_PATH)/$^ $@
 
 zsh: $(HOME)/.zshrc
 git: $(HOME)/.gitconfig
 
-$(HOME)/.config/starship.toml:
-	mkdir -p $(HOME)/.config
-	ln -sf $(DOTFILE_PATH)/starship.toml $(HOME)/.config/starship.toml
-
 starship: $(HOME)/.config/starship.toml
+	mkdir -p $(DOTCONFIG_PATH)
+	ln -sf $(DOTFILE_PATH)/starship.toml $(DOTCONFIG_PATH)/starship.toml
 
-$(HOME)/.config/zed/settings.json:
-	mkdir -p $(HOME)/.config/zed
-	ln -sf $(DOTFILE_PATH)/zed/settings.json $(HOME)/.config/zed/settings.json
+zed:
+	mkdir -p $(DOTCONFIG_PATH)/zed
+	ln -sf $(DOTFILE_PATH)/zed/keymap.json $(DOTCONFIG_PATH)/zed/keymap.json
+	ln -sf $(DOTFILE_PATH)/zed/settings.json $(DOTCONFIG_PATH)/zed/settings.json
 
-$(HOME)/.config/zed/keymap.json:
-	mkdir -p $(HOME)/.config/zed
-	ln -sf $(DOTFILE_PATH)/zed/keymap.json $(HOME)/.config/zed/keymap.json
-
-zed: $(HOME)/.config/zed/keymap.json $(HOME)/.config/zed/settings.json
-
-$(HOME)/Library/Application\ Support/Code/User/keybindings.json:
-	mkdir -p $(HOME)/Library/Application\ Support/Code/User
-	ln -sf $(DOTFILE_PATH)/vscode/keybindings.json $(HOME)/Library/Application\ Support/Code/User/keybindings.json
-
-$(HOME)/Library/Application\ Support/Code/User/settings.json:
-	mkdir -p $(HOME)/Library/Application\ Support/Code/User
-	ln -sf $(DOTFILE_PATH)/vscode/settings.json $(HOME)/Library/Application\ Support/Code/User/settings.json
-
-vscode: $(HOME)/Library/Application\ Support/Code/User/settings.json $(HOME)/Library/Application\ Support/Code/User/keybindings.json
+vscode:
+	mkdir -p $(VSCODE_CONFIG_PATH)
+	ln -sf $(DOTFILE_PATH)/vscode/settings.json $(VSCODE_CONFIG_PATH)/settings.json
+	ln -sf $(DOTFILE_PATH)/vscode/keybindings.json $(VSCODE_CONFIG_PATH)/keybindings.json
 
 all: git zsh zed starship
