@@ -1,0 +1,96 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+	{
+		"key": "cmd+n",
+		"command": "-workbench.action.files.newUntitledFile"
+	},
+	{
+		"key": "cmd+n",
+		"command": "explorer.newFile"
+	},
+	{
+		"key": "shift+cmd+n",
+		"command": "-workbench.action.newWindow"
+	},
+	{
+		"key": "shift+cmd+n",
+		"command": "explorer.newFolder"
+	},
+	{
+		"key": "shift+cmd+w",
+		"command": "-workbench.action.closeWindow"
+	},
+	{
+		"key": "cmd+w",
+		"command": "-workbench.action.closeWindow",
+		"when": "!editorIsOpen && !multipleEditorGroups"
+	},
+	{
+		"key": "cmd+w",
+		"command": "-workbench.action.closeActiveEditor"
+	},
+	{
+		"key": "cmd+w",
+		"command": "-workbench.action.closeGroup",
+		"when": "activeEditorGroupEmpty && multipleEditorGroups"
+	},
+	{
+		"key": "ctrl+w",
+		"command": "deleteWordLeft",
+		"when": "textInputFocus && !editorReadonly"
+	},
+	{
+		"key": "alt+backspace",
+		"command": "-deleteWordLeft",
+		"when": "textInputFocus && !editorReadonly"
+	},
+	{
+		"key": "ctrl+w",
+		"command": "-workbench.action.switchWindow"
+	},
+	{
+		"key": "shift+cmd+w",
+		"command": "workbench.action.closeActiveEditor"
+	},
+	{
+		"key": "shift+cmd+w",
+		"command": "workbench.action.closeEditorsAndGroup"
+	},
+	{
+		"key": "shift+cmd+w",
+		"command": "workbench.action.closeActivePinnedEditor"
+	},
+	{
+		"key": "shift+cmd+.",
+		"command": "-editor.action.accessibleViewGoToSymbol",
+		"when": "accessibilityHelpIsShown && accessibleViewGoToSymbolSupported || accessibleViewGoToSymbolSupported && accessibleViewIsShown"
+	},
+	{
+		"key": "cmd+q",
+		"command": "-workbench.action.quit"
+	},
+	{
+		"key": "cmd+q right",
+		"command": "workbench.action.focusRightGroup"
+	},
+	{
+		"key": "cmd+k cmd+right",
+		"command": "-workbench.action.focusRightGroup"
+	},
+	{
+		"key": "cmd+q left",
+		"command": "workbench.action.focusLeftGroup"
+	},
+	{
+		"key": "cmd+k cmd+left",
+		"command": "-workbench.action.focusLeftGroup"
+	},
+	{
+		"key": "cmd+j",
+		"command": "-workbench.action.togglePanel"
+	},
+	{
+		"key": "cmd+j",
+		"command": "workbench.action.focusActiveEditorGroup"
+	}
+]
