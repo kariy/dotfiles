@@ -6,7 +6,7 @@ VSCODE_CONFIG_PATH := $(HOME)/Library/Application\ Support/Code/User
 
 .PHONY: install-cli starship zed vscode
 
-$(HOME)/.%: .%
+$(HOME)/.%: %
 	ln -sf $(DOTFILE_PATH)/$^ $@
 
 zsh: $(HOME)/.zshrc
