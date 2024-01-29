@@ -1,0 +1,198 @@
+{
+	"workbench.iconTheme": "eq-material-theme-icons-light",
+	"files.associations": {
+		"*.html": "html",
+		"*.cairo": "cairo",
+		"*.json": "json"
+	},
+	"editor.stickyScroll.enabled": true,
+	"editor.cursorBlinking": "phase",
+	"editor.smoothScrolling": true,
+	"editor.suggestSelection": "first",
+	"workbench.colorCustomizations": {},
+	"telemetry.telemetryLevel": "off",
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"editor.defaultFormatter": "charliermarsh.ruff",
+	"prettier.tabWidth": 4,
+	"prettier.useTabs": true,
+	"prettier.printWidth": 90,
+	"editor.formatOnSave": true,
+	"terminal.integrated.defaultProfile.windows": "Git Bash",
+	"typescript.updateImportsOnFileMove.enabled": "always",
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"files.exclude": {
+		"**/.classpath": true,
+		"**/.factorypath": true,
+		"**/.project": true,
+		"**/.settings": true
+	},
+	"explorer.confirmDragAndDrop": false,
+	"explorer.confirmDelete": false,
+	"git.enableSmartCommit": true,
+	"vscode-edge-devtools.mirrorEdits": true,
+	"discord.lowerDetailsDebugging": "Debugging: {git_branch}",
+	"discord.lowerDetailsEditing": "Workspace: {full_dir_name} [ @ {git_branch} ]",
+	"discord.largeImage": "Editing a .{lang} file",
+	"discord.detailsIdling": "AFK : im probably taking a shit rn",
+	"rpc.appName": "Visual Studio Code",
+	"rpc.buttonActiveLabel": "View Repo",
+	"rpc.buttonEnabled": true,
+	"rpc.detailsEditing": "In {workspace} @ {git_branch}",
+	"rpc.largeImage": "Editing a .{lang} file",
+	"rpc.lowerDetailsEditing": "Editing {file_name}",
+	"rpc.showProblems": false,
+	"rpc.detailsViewing": "In {workspace} @ {git_branch}",
+	"discord-chat.token": "MjA0NjMzNDAwODEwNjY4MDM0.YYXp4A.59zcgCi2AaTbhvSuXz_OIYVUcmY",
+	"[solidity]": {
+		"editor.defaultFormatter": "NomicFoundation.hardhat-solidity"
+	},
+	"terminal.integrated.cursorBlinking": true,
+	"terminal.integrated.cursorStyle": "block",
+	"terminal.integrated.fontFamily": "JetBrains Mono NL",
+	"terminal.integrated.lineHeight": 1.1,
+	"terminal.integrated.profiles.linux": {
+		"bash": {
+			"path": "bash",
+			"icon": "terminal-bash"
+		},
+		"zsh": {
+			"path": "zsh"
+		},
+		"fish": {
+			"path": "fish"
+		},
+		"tmux": {
+			"path": "tmux",
+			"icon": "terminal-tmux"
+		},
+		"pwsh": {
+			"path": "pwsh",
+			"icon": "terminal-powershell"
+		},
+		"bash starship": {
+			"path": "/usr/bin/bash"
+		}
+	},
+	"gitlens.hovers.currentLine.over": "line",
+	"gitlens.defaultDateFormat": "h:mma Do MMMM YYYY",
+	"gitlens.defaultDateShortFormat": "D/MM/YYYY",
+	"gitlens.hovers.currentLine.enabled": false,
+	"editor.fontFamily": "JetBrains Mono NL",
+	"vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+	"vscode-neovim.neovimInitVimPaths.linux": "~/.config/init.vim",
+	"vscode-neovim.useWSL": true,
+	"vscode-neovim.mouseSelectionStartVisualMode": true,
+	"editor.guides.bracketPairs": "active",
+	"extensions.experimental.affinity": {
+		"asvetliakov.vscode-neovim": 1
+	},
+	"editor.inlineSuggest.enabled": true,
+	"github.copilot.enable": {
+		"*": true,
+		"plaintext": true,
+		"markdown": true,
+		"scminput": false,
+		"yaml": true,
+		"rust": true
+	},
+	"editor.fontLigatures": true,
+	"[rust]": {
+		"editor.defaultFormatter": "rust-lang.rust-analyzer"
+	},
+	"vsicons.dontShowNewVersionMessage": true,
+	"[proto3]": {
+		"editor.defaultFormatter": "zxh404.vscode-proto3"
+	},
+	"npm.keybindingsChangedWarningShown": true,
+	"rust-analyzer.cargo.features": [""],
+	"rust-analyzer.rust.analyzerTargetDir": true,
+	"rust-analyzer.cargo.buildScripts.enable": true,
+	"rust-analyzer.rustfmt.extraArgs": ["+nightly"],
+	"terminal.integrated.shellIntegration.enabled": true,
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[cairo]": {
+		"editor.tabSize": 4,
+		"editor.insertSpaces": true,
+		"editor.formatOnSave": true,
+		"editor.defaultFormatter": "StarkWare.cairo1"
+	},
+	"cairo.cairoFormatPath": "/home/kari/cairo_venv/bin/cairo-format",
+	"gitlens.currentLine.enabled": false,
+	"gitlens.views.stashes.files.layout": "tree",
+	"colorize.include": ["*"],
+	"window.titleBarStyle": "custom",
+	"window.enableMenuBarMnemonics": false,
+	"window.customMenuBarAltFocus": false,
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"redhat.telemetry.enabled": false,
+	"[python]": {
+		"editor.defaultFormatter": "charliermarsh.ruff"
+	},
+	"window.menuBarVisibility": "compact",
+	"window.commandCenter": true,
+	"editor.accessibilitySupport": "off",
+	"remote.SSH.remotePlatform": {
+		"www.itslarpingtime.xyz": "linux"
+	},
+	"evenBetterToml.formatter.alignComments": false,
+	"evenBetterToml.formatter.arrayAutoExpand": true,
+	"evenBetterToml.formatter.arrayAutoCollapse": true,
+	"evenBetterToml.formatter.compactArrays": false,
+	"evenBetterToml.formatter.inlineTableExpand": false,
+	"evenBetterToml.formatter.alignEntries": false,
+	"evenBetterToml.formatter.indentEntries": false,
+	"evenBetterToml.formatter.columnWidth": 80,
+	"evenBetterToml.formatter.reorderKeys": true,
+	"evenBetterToml.formatter.arrayTrailingComma": true,
+	"solidity.telemetry": false,
+	"github.copilot.advanced": {},
+	"editor.lineHeight": 2,
+	"[shellscript]": {
+		"editor.defaultFormatter": "shakram02.bash-beautify"
+	},
+	"editor.fontVariations": false,
+	"editor.fontWeight": "normal",
+	"editor.fontSize": 11,
+	"workbench.colorTheme": "Mayukai Mirage Gruvbox Darktooth",
+	"[toml]": {
+		"editor.defaultFormatter": "tamasfe.even-better-toml"
+	},
+	"rust-analyzer.cargo.cfgs": {},
+	"terminal.integrated.env.osx": {
+		"FIG_NEW_SESSION": "1"
+	},
+	"git.autofetch": true,
+	"[ignore]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format"
+	},
+	"cody.inlineChat.enabled": false,
+	"cody.autocomplete.enabled": false,
+	"diffEditor.experimental.showMoves": true,
+	"window.nativeTabs": true,
+	"editor.lineNumbers": "relative",
+	"editor.minimap.enabled": false,
+	"githubPullRequests.pullBranch": "never",
+	"cairo1.languageServerPath": "/Users/kariy/.dojo/bin/dojo-language-server",
+	"cairo1.enableScarb": true,
+	"cairo1.enableLanguageServer": true,
+	"python.defaultInterpreterPath": "python3",
+	"[makefile]": {
+		"editor.insertSpaces": false
+	},
+	"editor.cursorSmoothCaretAnimation": "on",
+	"[go]": {
+		"editor.defaultFormatter": "golang.go"
+	}
+}
