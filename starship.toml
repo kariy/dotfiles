@@ -1,0 +1,27 @@
+# Inserts a blank line between shell prompts
+add_newline = true
+
+[character]
+success_symbol = "[λ](bold green)"
+error_symbol = "[λ](bold red)"
+
+[directory]
+truncation_length = 2
+truncation_symbol = "../"
+format = "::[$path](bold #70dcfa)[$read_only]($read_only_style) "
+home_symbol = "🏠"
+
+[git_branch]
+format = "on [$symbol](bold 220)[$branch](bold 220) "
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[username]
+disabled = false
+show_always = true
+format = "[$user](bold #f54281)"
