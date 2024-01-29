@@ -4,6 +4,8 @@ DOTFILE_PATH := $(shell pwd)
 DOTCONFIG_PATH := $(HOME)/.config
 VSCODE_CONFIG_PATH := $(HOME)/Library/Application\ Support/Code/User
 
+.PHONY: install-cli starship zed vscode
+
 $(HOME)/.%: .%
 	ln -sf $(DOTFILE_PATH)/$^ $@
 
@@ -23,5 +25,9 @@ vscode:
 	mkdir -p $(VSCODE_CONFIG_PATH)
 	ln -sf $(DOTFILE_PATH)/vscode/settings.json $(VSCODE_CONFIG_PATH)/settings.json
 	ln -sf $(DOTFILE_PATH)/vscode/keybindings.json $(VSCODE_CONFIG_PATH)/keybindings.json
+
+install-cli:
+	cargo install bat starship
+	brew install exa btop fd fzf
 
 all: git zsh zed starship
