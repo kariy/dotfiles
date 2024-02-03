@@ -10,7 +10,10 @@ $(HOME)/.%: %
 	ln -sf $(DOTFILE_PATH)/$^ $@
 
 zsh: $(HOME)/.zshrc
-git: $(HOME)/.gitconfig
+	mkdir -p $(HOME)/.zsh
+	ln -sf $(DOTFILE_PATH)/zsh/_git $(HOME)/.zsh/_git
+
+git: $(HOME)/.gitconfig $(HOME)/.git-completions.bash
 
 starship: $(HOME)/.config/starship.toml
 	mkdir -p $(DOTCONFIG_PATH)

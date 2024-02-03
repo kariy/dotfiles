@@ -1,9 +1,9 @@
-fpath=(~/.zsh $fpath)
-
 source <(/usr/local/bin/starship init zsh --print-full-init)
 
 . ~/z.sh
 
+zstyle ':completion:*:*:git:*' script ~/.git-completion.bash
+fpath=(~/.zsh $fpath)
 
 # bun completions
 [ -s "/Users/kariy/.bun/_bun" ] && source "/Users/kariy/.bun/_bun"
