@@ -12,7 +12,7 @@
     "diagnostics": false,
     "metrics": false
   },
-  "theme": "One Light",
+  "theme": "One Dark",
   "buffer_font_size": 12,
   "buffer_font_family": "JetBrains Mono NL",
   "terminal": {
