@@ -33,7 +33,7 @@ vscode:
 install-cli:
 ifeq ($(UNAME), Linux)
 	cargo install bat starship
-	sudo apt install exa btop fd fzf
+	sudo apt install exa btop fd-find fzf
 endif
 ifeq ($(UNAME), Darwin)
 	cargo install bat starship
