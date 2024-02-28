@@ -1,3 +1,4 @@
+UNAME := $(shell uname)
 DOTFILE_PATH := $(shell pwd)
 
 # default path for config files
@@ -30,7 +31,13 @@ vscode:
 	ln -sf $(DOTFILE_PATH)/vscode/keybindings.json $(VSCODE_CONFIG_PATH)/keybindings.json
 
 install-cli:
+ifeq ($(UNAME), Linux)
+	cargo install bat starship
+	sudo apt install exa btop fd fzf
+endif
+ifeq ($(UNAME), Darwin)
 	cargo install bat starship
 	brew install exa btop fd fzf
+endif
 
-all: git zsh zed starship
+all: git zsh zed starship install-cli
