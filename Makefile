@@ -5,7 +5,7 @@ DOTFILE_PATH := $(shell pwd)
 DOTCONFIG_PATH := $(HOME)/.config
 VSCODE_CONFIG_PATH := $(HOME)/Library/Application\ Support/Code/User
 
-.PHONY: install-cli starship zed vscode
+.PHONY: check-commands install-tools starship zed vscode
 
 $(HOME)/.%: %
 	ln -sf $(DOTFILE_PATH)/$^ $@
@@ -30,14 +30,39 @@ vscode:
 	ln -sf $(DOTFILE_PATH)/vscode/settings.json $(VSCODE_CONFIG_PATH)/settings.json
 	ln -sf $(DOTFILE_PATH)/vscode/keybindings.json $(VSCODE_CONFIG_PATH)/keybindings.json
 
-install-cli:
-ifeq ($(UNAME), Linux)
-	cargo install bat starship
-	sudo apt install exa btop fd-find fzf
-endif
-ifeq ($(UNAME), Darwin)
-	cargo install bat starship
-	brew install exa btop fd fzf
-endif
+# List of tools to install using cargo
+CARGO_TOOLS = bat starship tokei fd-find
+# Tools to install using apt or brew
+OTHER_TOOLS = exa btop fzf
 
-all: git zsh zed starship install-cli
+TOOLS = $(CARGO_TOOLS) $(OTHER_TOOLS)
+
+# Checks if the tools are installed
+check-commands:
+	@for tool in $(TOOLS); do \
+    	actual_name=$$tool; \
+       	if [[ $$tool == "fd-find" ]]; then \
+			actual_name="fd"; \
+		fi; \
+		if ! command -v $$actual_name > /dev/null 2>&1; then \
+			echo $$tool; \
+		fi; \
+	done
+
+install-tools:
+	$(eval UNINSTALLED_TOOLS := $(shell make check-commands))
+	@for tool in $(UNINSTALLED_TOOLS); do \
+		echo "Installing $$tool..."; \
+		if echo "$(CARGO_TOOLS)" | grep -w $$tool > /dev/null; then \
+			cargo install $$tool; \
+		elif echo "$(OTHER_TOOLS)" | grep -w $$tool > /dev/null; then \
+			if [[ "$(UNAME)" == "Linux" ]]; then \
+				sudo apt install $$tool; \
+			elif [[ "$(UNAME)" == "Darwin" ]]; then \
+				brew install $$tool; \
+			fi \
+		fi \
+	done
+
+
+all: git zsh zed starship install-tools
