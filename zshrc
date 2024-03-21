@@ -41,7 +41,7 @@ alias gpc='gh pr create'
 ## cargo
 alias cr='cargo run'
 alias crb='cargo run --bin'
-alias cc='cargo check'
+alias cc='cargo check --tests'
 alias ca='cargo add'
 alias ct='cargo nextest run'
 
