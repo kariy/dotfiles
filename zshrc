@@ -22,7 +22,7 @@ alias cat="bat"
 alias ls="exa"
 alias la="exa -a"
 alias ll='exa -l'
-alias loc='tokei'
+alias loc='tokei --num-format commas'
 
 ## git
 alias grbm='git rebase main'
