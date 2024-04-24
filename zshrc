@@ -37,6 +37,7 @@ alias gb='git branch'
 alias gcm='git commit'
 alias gcip="git add . && gcm -m 'wip'"
 alias gpc='gh pr create'
+alias grh='git rev-parse --short HEAD'
 
 ## cargo
 alias cr='cargo run'
