@@ -49,6 +49,7 @@ alias ct='cargo nextest run'
 ## misc
 alias btop='btop -lc'
 alias rm='rm -rf'
+alias hex='hexyl'
 
 ### search
 

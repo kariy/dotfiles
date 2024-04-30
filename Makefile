@@ -33,7 +33,7 @@ vscode:
 # List of tools to install using cargo
 CARGO_TOOLS = bat starship tokei fd-find
 # Tools to install using apt or brew
-OTHER_TOOLS = exa btop fzf
+OTHER_TOOLS = exa btop fzf hexyl
 
 TOOLS = $(CARGO_TOOLS) $(OTHER_TOOLS)
 
