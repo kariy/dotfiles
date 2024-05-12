@@ -1,15 +1,16 @@
 # Inserts a blank line between shell prompts
 add_newline = true
+continuation_prompt = '▶  '
 
 [character]
 success_symbol = "[λ](bold green)"
 error_symbol = "[λ](bold red)"
 
 [directory]
+home_symbol = "🏠"
 truncation_length = 2
 truncation_symbol = "../"
 format = "::[$path](bold #70dcfa)[$read_only]($read_only_style) "
-home_symbol = "🏠"
 
 [git_branch]
 format = "on [$symbol](bold 220)[$branch](bold 220) "
@@ -25,3 +26,13 @@ disabled = true
 disabled = false
 show_always = true
 format = "[$user](bold #f54281)"
+
+[kubernetes]
+symbol = "☸"
+format = '[ $symbol $context( \($namespace\))]($style)'
+disabled = false
+
+[[kubernetes.contexts]]
+context_pattern = "gke_.*_(?P<cluster>[\\w-]+)"
+context_alias = "gke-$cluster"
+style = "bold yellow"
