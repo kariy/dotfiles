@@ -5,10 +5,10 @@ alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
 
 # swap managed window
-shift + alt - h : yabai -m window --swap west
-shift + alt - j : yabai -m window --swap south
-shift + alt - k : yabai -m window --swap north 
-shift + alt - l : yabai -m window --swap east
+shift + alt - h : yabai -m window --warp west
+shift + alt - j : yabai -m window --warp south
+shift + alt - k : yabai -m window --warp north 
+shift + alt - l : yabai -m window --warp east
 
 # toggle window split type
 alt - e : yabai -m window --toggle split
@@ -27,9 +27,6 @@ shift + cmd - x : yabai -m space --destroy
  
 # float / unfloat window and center on screen
 alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
-
-# move managed window
-# shift + cmd - h : yabai -m window --warp east
 
 # make floating window fill screen
 shift + alt - up : yabai -m window --grid 1:1:0:0:1:1
