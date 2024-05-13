@@ -1,11 +1,23 @@
 UNAME := $(shell uname)
 DOTFILE_PATH := $(shell pwd)
 
-# default path for config files
-DOTCONFIG_PATH := $(HOME)/.config
+DOTCONFIG_PATH := $(DOTFILE_PATH)/.config
+HOST_DOTCONFIG_PATH := $(HOME)/.config
+
 VSCODE_CONFIG_PATH := $(HOME)/Library/Application\ Support/Code/User
 
-.PHONY: check-commands install-tools starship zed vscode
+# Find all config files under any subdirectory of source
+DOTCONFIG_FILES := $(shell find $(DOTCONFIG_PATH) -type f)
+
+# Define targets based on source config files, substituting the source directory with the destination directory
+DOTCONFIG_TARGETS := $(DOTCONFIG_FILES:$(DOTCONFIG_PATH)/%=$(HOST_DOTCONFIG_PATH)/%)
+
+.PHONY: check-commands install-tools vscode zsh all
+
+$(HOST_DOTCONFIG_PATH)/%: $(DOTCONFIG_PATH)/%
+	@mkdir -p $(@D)
+	cp $< $@
+	ln -sf $< $@
 
 $(HOME)/.%: %
 	ln -sf $(DOTFILE_PATH)/$^ $@
@@ -15,15 +27,6 @@ zsh: $(HOME)/.zshrc
 	ln -sf $(DOTFILE_PATH)/zsh/_git $(HOME)/.zsh/_git
 
 git: $(HOME)/.gitconfig $(HOME)/.git-completions.bash
-
-starship: $(HOME)/.config/starship.toml
-	mkdir -p $(DOTCONFIG_PATH)
-	ln -sf $(DOTFILE_PATH)/starship.toml $(DOTCONFIG_PATH)/starship.toml
-
-zed:
-	mkdir -p $(DOTCONFIG_PATH)/zed
-	ln -sf $(DOTFILE_PATH)/zed/keymap.json $(DOTCONFIG_PATH)/zed/keymap.json
-	ln -sf $(DOTFILE_PATH)/zed/settings.json $(DOTCONFIG_PATH)/zed/settings.json
 
 vscode:
 	mkdir -p $(VSCODE_CONFIG_PATH)
@@ -64,5 +67,4 @@ install-tools:
 		fi \
 	done
 
-
-all: git zsh zed starship install-tools
+all: $(DOTCONFIG_TARGETS) git zsh install-tools 
