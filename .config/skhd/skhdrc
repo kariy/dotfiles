@@ -35,13 +35,13 @@ shift + cmd - n : yabai -m space --create && \
 shift + cmd - x : yabai -m space --destroy
  
 # float / unfloat window and center on screen
-alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+alt - f : yabai -m window --toggle float --grid 4:4:1:1:2:2
 
 # make floating window fill screen
-shift + alt - up : yabai -m window --grid 1:1:0:0:1:1
+# shift + alt - up : yabai -m window --grid 1:1:0:0:1:1
 
 # make floating window fill left-half of screen
-# shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
+# shift + alt - left   : yabai -m window --grid 1:1:0:0:1:1
 
 # fast focus desktop
 ctrl - left : yabai -m space --focus prev 
