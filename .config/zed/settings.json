@@ -17,9 +17,12 @@
         "diagnostics": false,
         "metrics": false
     },
-    "theme": "Atelier Sulphurpool Light",
+    "theme": "Snowflake Original",
+    "experimental.theme_overrides": {
+        "syntax": {}
+    },
     "buffer_font_size": 11.5,
-    "buffer_font_family": "JetBrains Mono NL",
+    "buffer_font_family": "CommitMono",
     "buffer_line_height": "comfortable",
     "terminal": {
         "font_family": "JetBrains Mono NL",

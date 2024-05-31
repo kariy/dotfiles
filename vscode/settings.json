@@ -194,5 +194,7 @@
 	"editor.cursorSmoothCaretAnimation": "on",
 	"[go]": {
 		"editor.defaultFormatter": "golang.go"
-	}
+	},
+	"firedbg.showWelcome": false,
+	"github.copilot.editor.enableAutoCompletions": true
 }

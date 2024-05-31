@@ -45,6 +45,7 @@ alias crb='cargo run --bin'
 alias cc='cargo check --tests'
 alias ca='cargo add'
 alias ct='cargo nextest run'
+alias cb='cargo bench'
 
 ## misc
 alias btop='btop -lc'
