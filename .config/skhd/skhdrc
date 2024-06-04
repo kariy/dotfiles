@@ -31,10 +31,13 @@ shift + cmd - n : yabai -m space --create && \
 		   yabai -m window --space "${index}" && \
                    yabai -m space --focus "${index}"
 
-# close the current space and all the windows in it
+# close the current space and all the windows in it and focus on the previous space
 shift + cmd - x : current_space_idx="$(yabai -m query --spaces | jq 'map(select(."has-focus" == true))[0].index')" && \
-			yabai -m query --windows --space $current_space_idx | jq '.[].id' | while read id; do yabai -m window --close $id; done && \
-				yabai -m space --destroy
+			focus_idx=$(expr $current_space_idx - 1) && \
+				yabai -m space --focus $focus_idx && \
+					yabai -m query --windows --space $current_space_idx | jq '.[].id' | \
+						while read id; do yabai -m window --close $id; done && \
+							yabai -m space --destroy $current_space_idx
  
 # float / unfloat window and center on screen
 alt - f : yabai -m window --toggle float --grid 4:4:1:1:2:2
