@@ -7,40 +7,52 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-    "languages": {
-        "Rust": {
-            "show_copilot_suggestions": true
-        }
-    },
-    "base_keymap": "VSCode",
-    "telemetry": {
-        "diagnostics": false,
-        "metrics": false
-    },
-    "theme": "Snowflake Original",
-    "experimental.theme_overrides": {
-        "syntax": {}
-    },
-    "buffer_font_size": 11.5,
-    "buffer_font_family": "CommitMono",
-    "buffer_line_height": "comfortable",
-    "terminal": {
-        "font_family": "JetBrains Mono NL",
-        "font_size": 11
-    },
-    "relative_line_numbers": false,
-    "vim_mode": true,
-    "hard_tabs": true,
-    "tab_size": 4,
-    "inlay_hints": {
-        "enabled": false,
-        "show_type_hints": true,
-        "show_parameter_hints": true,
-        "show_other_hints": true
-    },
-    "lsp": {
-        "rust-analyzer": {
-            "rustfmt": { "extraArgs": ["+nightly"] }
-        }
-    }
+	"languages": {
+		"Rust": {
+			"show_inline_completions": true
+		}
+	},
+	"base_keymap": "VSCode",
+	"telemetry": {
+		"diagnostics": false,
+		"metrics": false
+	},
+	"theme": "Snowflake Original",
+	"experimental.theme_overrides": {
+		"syntax": {}
+	},
+	"buffer_font_size": 11.5,
+	"buffer_font_family": "CommitMono",
+	"buffer_line_height": "comfortable",
+	"terminal": {
+		"font_family": "JetBrains Mono NL",
+		"font_size": 11
+	},
+	"relative_line_numbers": false,
+	"vim_mode": true,
+	"hard_tabs": true,
+	"tab_size": 4,
+	"inlay_hints": {
+		"enabled": false,
+		"show_type_hints": true,
+		"show_parameter_hints": true,
+		"show_other_hints": true
+	},
+	"lsp": {
+		"rust-analyzer": {
+			"rustfmt": { "extraArgs": ["+nightly"] }
+		}
+	},
+	"centered_layout": {
+		"left_padding": 0.15,
+		"right_padding": 0.15
+	},
+	"assistant": {
+		"version": "1",
+		"provider": {
+			"default_model": "claude-3-5-sonnet-20240620",
+			"name": "anthropic",
+			"type": "anthropic"
+		}
+	}
 }
