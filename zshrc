@@ -53,6 +53,7 @@ alias rm='rm -rf'
 alias hex='hexyl'
 alias kube=kubectl
 alias pls=sudo
+alias mkdir='mkdir -p'
 
 ### search
 
@@ -98,3 +99,5 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/go/bin"
+
+. "$HOME/.cargo/env"
