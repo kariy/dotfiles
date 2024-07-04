@@ -1,17 +1,16 @@
 [
-    {
-        "context": "Editor",
-        "bindings": {
-            "ctrl-w": "editor::DeleteToPreviousWordStart",
-            "cmd-shift-k": "editor::DeleteLine"
-        }
-    },
-    // default zed's vim keybindings: https://zed.dev/ref/vim.json
-    {
-        "context": "Editor && vim_mode == insert && !menu",
-        "bindings": {
-            "j j": "vim::NormalBefore",
-            "cmd-s": "vim::NormalBefore"
-        }
-    }
+	{
+		"context": "Editor",
+		"bindings": {
+			"ctrl-w": "editor::DeleteToPreviousWordStart",
+			"cmd-shift-k": ["workspace::SendKeystrokes", "cmd-alt-e ctrl-enter"]
+		}
+	},
+	// default zed's vim keybindings: https://zed.dev/ref/vim.json
+	{
+		"context": "Editor && vim_mode == insert && !menu",
+		"bindings": {
+			"cmd-s": "vim::NormalBefore"
+		}
+	}
 ]
