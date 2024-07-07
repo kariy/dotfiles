@@ -87,6 +87,15 @@ fof() {
   fi
 }
 
+# open the '~/Project' folder, and search through it 
+project() {
+  local dir=$(fid ~/Project)
+  if [ -n "$dir" ]; then
+	  cd "$dir"
+  fi
+}
+
+
 export FZF_DEFAULT_OPTS="--height 40%"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

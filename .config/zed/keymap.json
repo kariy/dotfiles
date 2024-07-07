@@ -3,6 +3,8 @@
 		"context": "Editor",
 		"bindings": {
 			"ctrl-w": "editor::DeleteToPreviousWordStart",
+			// select enclosing symbol + activate inline assist
+			// basically an easy shortcut for capturing contexts for the inline assistant
 			"cmd-shift-k": ["workspace::SendKeystrokes", "cmd-alt-e ctrl-enter"]
 		}
 	},
