@@ -21,7 +21,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 alias cat="bat"
 alias ls="exa"
 alias la="exa -a"
-alias ll='exa -l'
+alias ll='exa -l -h'
 alias loc='tokei --num-format commas'
 
 ## git
