@@ -5,11 +5,11 @@ sudo yabai --load-sa
 # default space layout
 yabai -m config layout bsp
 
-# Set all padding and gaps to 20pt
-yabai -m config top_padding    10
-yabai -m config bottom_padding 10
-yabai -m config left_padding   10
-yabai -m config right_padding  10
+# Set all padding and gaps to 5pt
+yabai -m config top_padding    5 
+yabai -m config bottom_padding 5
+yabai -m config left_padding   5
+yabai -m config right_padding  5
 
 # padding between windows
 yabai -m config window_gap 10
