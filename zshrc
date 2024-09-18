@@ -1,22 +1,63 @@
-source <(/usr/local/bin/starship init zsh --print-full-init)
-
 . ~/z.sh
-
-zstyle ':completion:*:*:git:*' script ~/.git-completion.bash
 fpath=(~/.zsh $fpath)
 
-# bun completions
+
+## rust --------------  
+
+. "$HOME/.cargo/env"
+
+
+## go ---------------- 
+
+export PATH="$PATH:$HOME/go/bin"
+
+
+## nvm --------------- 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+## starship --------- 
+
+source <(/usr/local/bin/starship init zsh --print-full-init)
+
+
+## zoxide ----------- 
+
+eval "$(zoxide init zsh)"
+
+
+## git --------------
+
+zstyle ':completion:*:*:git:*' script ~/.git-completion.bash
+
+
+## bin -------------- 
+
 [ -s "/Users/kariy/.bun/_bun" ] && source "/Users/kariy/.bun/_bun"
 
-# bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-## My awesome aliases
+
+## fzf --------------
+
+export FZF_DEFAULT_OPTS="--height 40%"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+## wasmer -----------
+
+export WASMER_DIR="/Users/kariy/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+
+
+## alias ----------- 
 
 alias cat="bat"
 alias ls="exa"
@@ -24,7 +65,8 @@ alias la="exa -a"
 alias ll='exa -l -h'
 alias loc='tokei --num-format commas'
 
-## git
+## // git -----------  
+
 alias grbm='git rebase main'
 alias gw='git switch'
 alias gwc='git switch -c '
@@ -39,7 +81,8 @@ alias gcip="git add . && gcm -m 'wip'"
 alias gpc='gh pr create'
 alias grh='git rev-parse --short HEAD'
 
-## cargo
+## // cargo --------- 
+
 alias cr='cargo run'
 alias crb='cargo run --bin'
 alias cc='cargo check --tests'
@@ -47,7 +90,8 @@ alias ca='cargo add'
 alias ct='cargo nextest run'
 alias cb='cargo bench'
 
-## misc
+## // misc ---------- 
+
 alias btop='btop -lc'
 alias rm='rm -rf'
 alias hex='hexyl'
@@ -55,7 +99,8 @@ alias kube=kubectl
 alias pls=sudo
 alias mkdir='mkdir -p'
 
-### search
+
+## funcs ------------ 
 
 # find a directory and returns the path
 fid() {
@@ -96,17 +141,10 @@ project() {
 }
 
 
-export FZF_DEFAULT_OPTS="--height 40%"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 export PATH="/usr/local/wasm/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.wasmtime/bin:$PATH"
+export PATH="$HOME/odin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -f "/Users/kariy/.ghcup/env" ] && . "/Users/kariy/.ghcup/env" # ghcup-env
 
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$HOME/go/bin"
-
-. "$HOME/.cargo/env"
