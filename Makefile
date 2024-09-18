@@ -12,7 +12,7 @@ DOTCONFIG_FILES := $(shell find $(DOTCONFIG_PATH) -type f)
 # Define targets based on source config files, substituting the source directory with the destination directory
 DOTCONFIG_TARGETS := $(DOTCONFIG_FILES:$(DOTCONFIG_PATH)/%=$(HOST_DOTCONFIG_PATH)/%)
 
-.PHONY: check-commands install-tools vscode zsh all
+.PHONY: check-tools-installed install-tools vscode zsh all
 
 $(HOST_DOTCONFIG_PATH)/%: $(DOTCONFIG_PATH)/%
 	@mkdir -p $(@D)
@@ -36,12 +36,12 @@ vscode:
 # List of tools to install using cargo
 CARGO_TOOLS = bat starship tokei fd-find
 # Tools to install using apt or brew
-OTHER_TOOLS = exa btop fzf hexyl
+OTHER_TOOLS = exa btop fzf hexyl zoxide
 
 TOOLS = $(CARGO_TOOLS) $(OTHER_TOOLS)
 
 # Checks if the tools are installed
-check-commands:
+check-tools-installed:
 	@for tool in $(TOOLS); do \
     	actual_name=$$tool; \
        	if [[ $$tool == "fd-find" ]]; then \
@@ -53,7 +53,7 @@ check-commands:
 	done
 
 install-tools:
-	$(eval UNINSTALLED_TOOLS := $(shell make check-commands))
+	$(eval UNINSTALLED_TOOLS := $(shell make check-tools-installed))
 	@for tool in $(UNINSTALLED_TOOLS); do \
 		echo "Installing $$tool..."; \
 		if echo "$(CARGO_TOOLS)" | grep -w $$tool > /dev/null; then \
