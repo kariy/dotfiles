@@ -82,7 +82,7 @@
 	"gitlens.defaultDateFormat": "h:mma Do MMMM YYYY",
 	"gitlens.defaultDateShortFormat": "D/MM/YYYY",
 	"gitlens.hovers.currentLine.enabled": false,
-	"editor.fontFamily": "JetBrains Mono NL",
+	"editor.fontFamily": "Berkeley Mono",
 	"vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
 	"vscode-neovim.neovimInitVimPaths.linux": "~/.config/init.vim",
 	"vscode-neovim.useWSL": true,
@@ -164,8 +164,8 @@
 	},
 	"editor.fontVariations": false,
 	"editor.fontWeight": "normal",
-	"editor.fontSize": 11,
-	"workbench.colorTheme": "Mayukai Mirage Gruvbox Darktooth",
+	"editor.fontSize": 9.7,
+	"workbench.colorTheme": "Mayukai Alucard",
 	"[toml]": {
 		"editor.defaultFormatter": "tamasfe.even-better-toml"
 	},
@@ -196,5 +196,7 @@
 		"editor.defaultFormatter": "golang.go"
 	},
 	"firedbg.showWelcome": false,
-	"github.copilot.editor.enableAutoCompletions": true
+	"github.copilot.editor.enableAutoCompletions": true,
+	"update.showReleaseNotes": false,
+	"terminal.integrated.fontSize": 11
 }

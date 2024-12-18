@@ -34,7 +34,7 @@ eval "$(zoxide init zsh)"
 zstyle ':completion:*:*:git:*' script ~/.git-completion.bash
 
 
-## bin -------------- 
+## bun -------------- 
 
 [ -s "/Users/kariy/.bun/_bun" ] && source "/Users/kariy/.bun/_bun"
 
@@ -56,6 +56,11 @@ export FZF_DEFAULT_OPTS="--height 40%"
 export WASMER_DIR="/Users/kariy/.wasmer"
 [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
 
+## asdf -----------
+
+# This is required to ensure all asdf installations can be found 
+
+source ~/.asdf/asdf.sh
 
 ## alias ----------- 
 
@@ -90,6 +95,10 @@ alias ca='cargo add'
 alias ct='cargo nextest run'
 alias cb='cargo bench'
 
+## // zellij ---------- 
+
+alias zel=zellij
+
 ## // misc ---------- 
 
 alias btop='btop -lc'
@@ -98,7 +107,7 @@ alias hex='hexyl'
 alias kube=kubectl
 alias pls=sudo
 alias mkdir='mkdir -p'
-
+alias nv=nvim
 
 ## funcs ------------ 
 
@@ -145,6 +154,7 @@ export PATH="/usr/local/wasm/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.wasmtime/bin:$PATH"
 export PATH="$HOME/odin:$PATH"
+export PATH="$HOME/starknet-foundry/bin:$PATH"
 
 [ -f "/Users/kariy/.ghcup/env" ] && . "/Users/kariy/.ghcup/env" # ghcup-env
 
