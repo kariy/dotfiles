@@ -158,3 +158,8 @@ export PATH="$HOME/starknet-foundry/bin:$PATH"
 
 [ -f "/Users/kariy/.ghcup/env" ] && . "/Users/kariy/.ghcup/env" # ghcup-env
 
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
+alias c='claude --dangerously-skip-permissions'
+
