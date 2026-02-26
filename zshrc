@@ -161,5 +161,5 @@ export PATH="$HOME/starknet-foundry/bin:$PATH"
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
 
-alias c='claude --dangerously-skip-permissions'
-
+alias cc='claude --dangerously-skip-permissions'
+alias cx='codex --dangerously-bypass-approvals-and-sandbox'
