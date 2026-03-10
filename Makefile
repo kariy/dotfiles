@@ -12,7 +12,7 @@ DOTCONFIG_FILES := $(shell find $(DOTCONFIG_PATH) -type f)
 # Define targets based on source config files, substituting the source directory with the destination directory
 DOTCONFIG_TARGETS := $(DOTCONFIG_FILES:$(DOTCONFIG_PATH)/%=$(HOST_DOTCONFIG_PATH)/%)
 
-.PHONY: check-tools-installed install-tools vscode zsh rust asdf all
+.PHONY: check-tools-installed install-tools vscode zsh nvim rust asdf all
 
 $(HOST_DOTCONFIG_PATH)/%: $(DOTCONFIG_PATH)/%
 	@mkdir -p $(@D)
@@ -27,6 +27,10 @@ zsh: $(HOME)/.zshrc
 	ln -sf $(DOTFILE_PATH)/zsh/_git $(HOME)/.zsh/_git
 
 git: $(HOME)/.gitconfig $(HOME)/.git-completion.bash
+
+nvim:
+	mkdir -p $(HOST_DOTCONFIG_PATH)/nvim
+	ln -sf $(DOTFILE_PATH)/nvim/init.vim $(HOST_DOTCONFIG_PATH)/nvim/init.vim
 
 vscode:
 	mkdir -p $(VSCODE_CONFIG_PATH)
@@ -83,4 +87,4 @@ install-tools: rust asdf
 		fi \
 	done
 
-all: $(DOTCONFIG_TARGETS) git zsh install-tools 
+all: $(DOTCONFIG_TARGETS) git zsh nvim install-tools
