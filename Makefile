@@ -125,6 +125,12 @@ tools: rust asdf nvm
 	else \
 		echo "dust already installed."; \
 	fi
+	@if ! command -v wrangler > /dev/null 2>&1; then \
+		echo "Installing wrangler (Cloudflare R2 CLI)..."; \
+		. "$(HOME)/.nvm/nvm.sh" && npm i -g wrangler; \
+	else \
+		echo "wrangler already installed."; \
+	fi
 
 LAUNCHD_PLIST := $(HOME)/Library/LaunchAgents/com.dotfiles.autocommit.plist
 SYSTEMD_SERVICE := $(HOST_DOTCONFIG_PATH)/systemd/user/dotfiles-autocommit.service
