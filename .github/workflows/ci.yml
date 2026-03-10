@@ -19,6 +19,9 @@ jobs:
       - name: Run make all
         run: make all
 
+      - name: Add cargo to PATH
+        run: echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+
       - name: Verify tools are installed
         run: |
           echo "Checking tool installations..."

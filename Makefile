@@ -38,10 +38,10 @@ vscode:
 	ln -sf $(DOTFILE_PATH)/vscode/settings.json $(VSCODE_CONFIG_PATH)/settings.json
 	ln -sf $(DOTFILE_PATH)/vscode/keybindings.json $(VSCODE_CONFIG_PATH)/keybindings.json
 
-# List of tools to install using cargo
-CARGO_TOOLS = bat starship tokei fd-find
+# Tools to install using cargo (Rust-based, consistent across platforms)
+CARGO_TOOLS = bat starship tokei fd-find eza hexyl zoxide
 # Tools to install using apt or brew
-OTHER_TOOLS = eza btop fzf hexyl zoxide
+OTHER_TOOLS = btop fzf
 
 TOOLS = $(CARGO_TOOLS) $(OTHER_TOOLS)
 
@@ -74,11 +74,12 @@ asdf:
 	fi
 
 install-tools: rust asdf
-	$(eval UNINSTALLED_TOOLS := $(shell make check-tools-installed))
-	@for tool in $(UNINSTALLED_TOOLS); do \
+	$(eval UNINSTALLED_TOOLS := $(shell . "$(HOME)/.cargo/env" 2>/dev/null; make check-tools-installed))
+	@. "$(HOME)/.cargo/env" 2>/dev/null; \
+	for tool in $(UNINSTALLED_TOOLS); do \
 		echo "Installing $$tool..."; \
 		if echo "$(CARGO_TOOLS)" | grep -w $$tool > /dev/null; then \
-			. "$(HOME)/.cargo/env" && cargo install $$tool; \
+			cargo install $$tool; \
 		elif echo "$(OTHER_TOOLS)" | grep -w $$tool > /dev/null; then \
 			if [[ "$(UNAME)" == "Linux" ]]; then \
 				sudo apt install -y $$tool; \
