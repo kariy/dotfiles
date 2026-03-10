@@ -182,3 +182,10 @@ alias codex='codex --dangerously-bypass-approvals-and-sandbox'
 
 alias cl='claude'
 alias cx='codex'
+
+# bun completions
+[ -s "/Users/kerry/.bun/_bun" ] && source "/Users/kerry/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
