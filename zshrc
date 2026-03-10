@@ -1,5 +1,5 @@
 [ -f ~/z.sh ] && . ~/z.sh
-fpath=(~/.zsh $fpath)
+if [ -n "$ZSH_VERSION" ]; then fpath=(~/.zsh $fpath); fi
 
 
 ## rust --------------  
@@ -21,17 +21,25 @@ export NVM_DIR="$HOME/.nvm"
 
 ## starship --------- 
 
-if command -v starship >/dev/null 2>&1; then eval "$(starship init zsh)"; fi
+if command -v starship >/dev/null 2>&1; then
+  if [ -n "$ZSH_VERSION" ]; then eval "$(starship init zsh)"; else eval "$(starship init bash)"; fi
+fi
 
 
 ## zoxide ----------- 
 
-eval "$(zoxide init zsh)"
+if command -v zoxide >/dev/null 2>&1; then
+  if [ -n "$ZSH_VERSION" ]; then eval "$(zoxide init zsh)"; else eval "$(zoxide init bash)"; fi
+fi
 
 
 ## git --------------
 
-zstyle ':completion:*:*:git:*' script ~/.git-completion.bash
+if [ -n "$ZSH_VERSION" ]; then
+  zstyle ':completion:*:*:git:*' script ~/.git-completion.bash
+else
+  [ -f ~/.git-completion.bash ] && source ~/.git-completion.bash
+fi
 
 
 ## bun -------------- 

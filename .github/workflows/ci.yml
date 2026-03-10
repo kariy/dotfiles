@@ -94,8 +94,10 @@ jobs:
           check_symlink "$HOME/.gitconfig" "$DOTFILE_PATH/gitconfig"
           check_symlink "$HOME/.git-completion.bash" "$DOTFILE_PATH/git-completion.bash"
 
-          # zsh completions
-          check_symlink "$HOME/.zsh/_git" "$DOTFILE_PATH/zsh/_git"
+          # zsh completions (macOS only)
+          if [ "$(uname)" = "Darwin" ]; then
+            check_symlink "$HOME/.zsh/_git" "$DOTFILE_PATH/zsh/_git"
+          fi
 
           # .config files
           check_symlink "$HOME/.config/starship.toml" "$DOTFILE_PATH/.config/starship.toml"

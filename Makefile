@@ -26,11 +26,11 @@ $(HOME)/.%: %
 shell:
 	@if [[ "$(UNAME)" == "Darwin" ]]; then \
 		ln -sf $(DOTFILE_PATH)/zshrc $(HOME)/.zshrc; \
+		mkdir -p $(HOME)/.zsh; \
+		ln -sf $(DOTFILE_PATH)/zsh/_git $(HOME)/.zsh/_git; \
 	else \
 		ln -sf $(DOTFILE_PATH)/zshrc $(HOME)/.bashrc; \
 	fi
-	mkdir -p $(HOME)/.zsh
-	ln -sf $(DOTFILE_PATH)/zsh/_git $(HOME)/.zsh/_git
 
 git: $(HOME)/.gitconfig $(HOME)/.git-completion.bash
 
