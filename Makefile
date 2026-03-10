@@ -13,6 +13,7 @@ DOTCONFIG_FILES := $(shell find $(DOTCONFIG_PATH) -type f)
 # Define targets based on source config files, substituting the source directory with the destination directory
 DOTCONFIG_TARGETS := $(DOTCONFIG_FILES:$(DOTCONFIG_PATH)/%=$(HOST_DOTCONFIG_PATH)/%)
 
+.DEFAULT_GOAL := all
 .PHONY: check-tools-installed install-tools vscode zsh nvim rust asdf all
 
 $(HOST_DOTCONFIG_PATH)/%: $(DOTCONFIG_PATH)/%
