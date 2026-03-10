@@ -65,9 +65,9 @@ source ~/.asdf/asdf.sh
 ## alias ----------- 
 
 alias cat="bat"
-alias ls="exa"
-alias la="exa -a"
-alias ll='exa -l -h'
+alias ls="eza"
+alias la="eza -a"
+alias ll='eza -l -h'
 alias loc='tokei --num-format commas'
 
 ## // git -----------  

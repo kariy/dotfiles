@@ -26,7 +26,7 @@ zsh: $(HOME)/.zshrc
 	mkdir -p $(HOME)/.zsh
 	ln -sf $(DOTFILE_PATH)/zsh/_git $(HOME)/.zsh/_git
 
-git: $(HOME)/.gitconfig $(HOME)/.git-completions.bash
+git: $(HOME)/.gitconfig $(HOME)/.git-completion.bash
 
 vscode:
 	mkdir -p $(VSCODE_CONFIG_PATH)
@@ -36,7 +36,7 @@ vscode:
 # List of tools to install using cargo
 CARGO_TOOLS = bat starship tokei fd-find
 # Tools to install using apt or brew
-OTHER_TOOLS = exa btop fzf hexyl zoxide
+OTHER_TOOLS = eza btop fzf hexyl zoxide
 
 TOOLS = $(CARGO_TOOLS) $(OTHER_TOOLS)
 
