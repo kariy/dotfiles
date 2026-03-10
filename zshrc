@@ -1,10 +1,10 @@
-. ~/z.sh
+[ -f ~/z.sh ] && . ~/z.sh
 fpath=(~/.zsh $fpath)
 
 
 ## rust --------------  
 
-. "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 
 ## go ---------------- 
@@ -21,7 +21,7 @@ export NVM_DIR="$HOME/.nvm"
 
 ## starship --------- 
 
-source <(/usr/local/bin/starship init zsh --print-full-init)
+if command -v starship >/dev/null 2>&1; then eval "$(starship init zsh)"; fi
 
 
 ## zoxide ----------- 
@@ -58,9 +58,9 @@ export WASMER_DIR="/Users/kariy/.wasmer"
 
 ## asdf -----------
 
-# This is required to ensure all asdf installations can be found 
+# This is required to ensure all asdf installations can be found
 
-source ~/.asdf/asdf.sh
+[ -f ~/.asdf/asdf.sh ] && source ~/.asdf/asdf.sh
 
 ## alias ----------- 
 
