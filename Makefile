@@ -14,7 +14,7 @@ DOTCONFIG_FILES := $(shell find $(DOTCONFIG_PATH) -type f)
 DOTCONFIG_TARGETS := $(DOTCONFIG_FILES:$(DOTCONFIG_PATH)/%=$(HOST_DOTCONFIG_PATH)/%)
 
 .DEFAULT_GOAL := all
-.PHONY: check-tools-installed tools vscode shell nvim rust asdf nvm pyenv uv agents autocommit autocommit-stop all
+.PHONY: check-tools-installed tools vscode shell nvim rust asdf nvm bun pyenv uv agents autocommit autocommit-stop all
 
 $(HOST_DOTCONFIG_PATH)/%: $(DOTCONFIG_PATH)/%
 	@mkdir -p $(@D)
@@ -87,6 +87,14 @@ nvm:
 		echo "nvm already installed."; \
 	fi
 
+bun:
+	@if ! command -v bun > /dev/null 2>&1; then \
+		echo "Installing bun..."; \
+		curl -fsSL https://bun.sh/install | bash; \
+	else \
+		echo "bun already installed."; \
+	fi
+
 pyenv:
 	@if ! command -v pyenv > /dev/null 2>&1; then \
 		echo "Installing pyenv..."; \
@@ -130,7 +138,7 @@ agents: nvm
 		echo "Codex already installed."; \
 	fi
 
-tools: rust asdf nvm pyenv uv
+tools: rust asdf nvm bun pyenv uv
 	$(eval UNINSTALLED_TOOLS := $(shell . "$(HOME)/.cargo/env" 2>/dev/null; make check-tools-installed))
 	@. "$(HOME)/.cargo/env" 2>/dev/null; \
 	for tool in $(UNINSTALLED_TOOLS); do \
