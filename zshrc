@@ -62,7 +62,15 @@ export WASMER_DIR="$HOME/.wasmer"
 
 [ -f ~/.asdf/asdf.sh ] && source ~/.asdf/asdf.sh
 
-## alias ----------- 
+## pyenv -----------
+
+if command -v pyenv >/dev/null 2>&1; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+fi
+
+## alias -----------
 
 alias cat="bat"
 alias ls="eza"

@@ -14,7 +14,7 @@ DOTCONFIG_FILES := $(shell find $(DOTCONFIG_PATH) -type f)
 DOTCONFIG_TARGETS := $(DOTCONFIG_FILES:$(DOTCONFIG_PATH)/%=$(HOST_DOTCONFIG_PATH)/%)
 
 .DEFAULT_GOAL := all
-.PHONY: check-tools-installed tools vscode zsh nvim rust asdf nvm agents autocommit autocommit-stop all
+.PHONY: check-tools-installed tools vscode zsh nvim rust asdf nvm pyenv uv agents autocommit autocommit-stop all
 
 $(HOST_DOTCONFIG_PATH)/%: $(DOTCONFIG_PATH)/%
 	@mkdir -p $(@D)
@@ -82,6 +82,27 @@ nvm:
 		echo "nvm already installed."; \
 	fi
 
+pyenv:
+	@if ! command -v pyenv > /dev/null 2>&1; then \
+		echo "Installing pyenv..."; \
+		curl -fsSL https://pyenv.run | bash; \
+		export PATH="$(HOME)/.pyenv/bin:$$PATH" && \
+		eval "$$(pyenv init -)" && \
+		echo "Installing Python (latest)..." && \
+		pyenv install -s 3 && \
+		pyenv global 3; \
+	else \
+		echo "pyenv already installed."; \
+	fi
+
+uv:
+	@if ! command -v uv > /dev/null 2>&1; then \
+		echo "Installing uv..."; \
+		curl -LsSf https://astral.sh/uv/install.sh | sh; \
+	else \
+		echo "uv already installed."; \
+	fi
+
 agents: nvm
 	@if ! command -v claude > /dev/null 2>&1; then \
 		echo "Installing Claude Code..."; \
@@ -104,7 +125,7 @@ agents: nvm
 		echo "Codex already installed."; \
 	fi
 
-tools: rust asdf nvm
+tools: rust asdf nvm pyenv uv
 	$(eval UNINSTALLED_TOOLS := $(shell . "$(HOME)/.cargo/env" 2>/dev/null; make check-tools-installed))
 	@. "$(HOME)/.cargo/env" 2>/dev/null; \
 	for tool in $(UNINSTALLED_TOOLS); do \
