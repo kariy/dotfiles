@@ -12,7 +12,7 @@ DOTCONFIG_FILES := $(shell find $(DOTCONFIG_PATH) -type f)
 # Define targets based on source config files, substituting the source directory with the destination directory
 DOTCONFIG_TARGETS := $(DOTCONFIG_FILES:$(DOTCONFIG_PATH)/%=$(HOST_DOTCONFIG_PATH)/%)
 
-.PHONY: check-tools-installed install-tools vscode zsh all
+.PHONY: check-tools-installed install-tools vscode zsh rust asdf all
 
 $(HOST_DOTCONFIG_PATH)/%: $(DOTCONFIG_PATH)/%
 	@mkdir -p $(@D)
@@ -52,12 +52,28 @@ check-tools-installed:
 		fi; \
 	done
 
-install-tools:
+rust:
+	@if ! command -v rustup > /dev/null 2>&1; then \
+		echo "Installing Rust toolchain via rustup..."; \
+		curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y; \
+	else \
+		echo "Rust toolchain already installed."; \
+	fi
+
+asdf:
+	@if [ ! -d "$(HOME)/.asdf" ]; then \
+		echo "Installing asdf..."; \
+		git clone https://github.com/asdf-vm/asdf.git $(HOME)/.asdf --branch v0.15.0; \
+	else \
+		echo "asdf already installed."; \
+	fi
+
+install-tools: rust asdf
 	$(eval UNINSTALLED_TOOLS := $(shell make check-tools-installed))
 	@for tool in $(UNINSTALLED_TOOLS); do \
 		echo "Installing $$tool..."; \
 		if echo "$(CARGO_TOOLS)" | grep -w $$tool > /dev/null; then \
-			cargo install $$tool; \
+			. "$(HOME)/.cargo/env" && cargo install $$tool; \
 		elif echo "$(OTHER_TOOLS)" | grep -w $$tool > /dev/null; then \
 			if [[ "$(UNAME)" == "Linux" ]]; then \
 				sudo apt install $$tool; \
