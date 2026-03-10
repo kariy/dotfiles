@@ -36,7 +36,7 @@ zstyle ':completion:*:*:git:*' script ~/.git-completion.bash
 
 ## bun -------------- 
 
-[ -s "/Users/kariy/.bun/_bun" ] && source "/Users/kariy/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
@@ -53,7 +53,7 @@ export FZF_DEFAULT_OPTS="--height 40%"
 
 ## wasmer -----------
 
-export WASMER_DIR="/Users/kariy/.wasmer"
+export WASMER_DIR="$HOME/.wasmer"
 [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
 
 ## asdf -----------
@@ -156,7 +156,7 @@ export PATH="$HOME/.wasmtime/bin:$PATH"
 export PATH="$HOME/odin:$PATH"
 export PATH="$HOME/starknet-foundry/bin:$PATH"
 
-[ -f "/Users/kariy/.ghcup/env" ] && . "/Users/kariy/.ghcup/env" # ghcup-env
+[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env
 
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
