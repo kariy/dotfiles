@@ -14,7 +14,7 @@ DOTCONFIG_FILES := $(shell find $(DOTCONFIG_PATH) -type f)
 DOTCONFIG_TARGETS := $(DOTCONFIG_FILES:$(DOTCONFIG_PATH)/%=$(HOST_DOTCONFIG_PATH)/%)
 
 .DEFAULT_GOAL := all
-.PHONY: check-tools-installed install-tools vscode zsh nvim rust asdf nvm agents autocommit autocommit-stop all
+.PHONY: check-tools-installed tools vscode zsh nvim rust asdf nvm agents autocommit autocommit-stop all
 
 $(HOST_DOTCONFIG_PATH)/%: $(DOTCONFIG_PATH)/%
 	@mkdir -p $(@D)
@@ -105,7 +105,7 @@ agents: nvm
 		echo "Codex already installed."; \
 	fi
 
-install-tools: rust asdf nvm
+tools: rust asdf nvm
 	$(eval UNINSTALLED_TOOLS := $(shell . "$(HOME)/.cargo/env" 2>/dev/null; make check-tools-installed))
 	@. "$(HOME)/.cargo/env" 2>/dev/null; \
 	for tool in $(UNINSTALLED_TOOLS); do \
@@ -153,4 +153,4 @@ autocommit-stop:
 		echo "Autocommit service is not running."; \
 	fi
 
-all: $(DOTCONFIG_TARGETS) git zsh nvim install-tools agents
+all: $(DOTCONFIG_TARGETS) git zsh nvim tools agents
