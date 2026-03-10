@@ -14,7 +14,7 @@ DOTCONFIG_FILES := $(shell find $(DOTCONFIG_PATH) -type f)
 DOTCONFIG_TARGETS := $(DOTCONFIG_FILES:$(DOTCONFIG_PATH)/%=$(HOST_DOTCONFIG_PATH)/%)
 
 .DEFAULT_GOAL := all
-.PHONY: check-tools-installed install-tools vscode zsh nvim rust asdf nvm autocommit autocommit-stop all
+.PHONY: check-tools-installed install-tools vscode zsh nvim rust asdf nvm agents autocommit autocommit-stop all
 
 $(HOST_DOTCONFIG_PATH)/%: $(DOTCONFIG_PATH)/%
 	@mkdir -p $(@D)
@@ -83,6 +83,28 @@ nvm:
 		echo "nvm already installed."; \
 	fi
 
+agents: nvm
+	@if ! command -v claude > /dev/null 2>&1; then \
+		echo "Installing Claude Code..."; \
+		if [[ "$(UNAME)" == "Darwin" ]]; then \
+			curl -fsSL https://claude.ai/install.sh | bash; \
+		else \
+			. "$(HOME)/.nvm/nvm.sh" && npm i -g @anthropic-ai/claude-code; \
+		fi \
+	else \
+		echo "Claude Code already installed."; \
+	fi
+	@if ! command -v codex > /dev/null 2>&1; then \
+		echo "Installing Codex..."; \
+		if [[ "$(UNAME)" == "Darwin" ]]; then \
+			brew install codex; \
+		else \
+			. "$(HOME)/.nvm/nvm.sh" && npm i -g @openai/codex; \
+		fi \
+	else \
+		echo "Codex already installed."; \
+	fi
+
 install-tools: rust asdf nvm
 	$(eval UNINSTALLED_TOOLS := $(shell . "$(HOME)/.cargo/env" 2>/dev/null; make check-tools-installed))
 	@. "$(HOME)/.cargo/env" 2>/dev/null; \
@@ -131,4 +153,4 @@ autocommit-stop:
 		echo "Autocommit service is not running."; \
 	fi
 
-all: $(DOTCONFIG_TARGETS) git zsh nvim install-tools
+all: $(DOTCONFIG_TARGETS) git zsh nvim install-tools agents
