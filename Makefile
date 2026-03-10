@@ -96,7 +96,7 @@ bun:
 	fi
 
 pyenv:
-	@if ! command -v pyenv > /dev/null 2>&1; then \
+	@if [ ! -d "$(HOME)/.pyenv" ]; then \
 		echo "Installing pyenv..."; \
 		curl -fsSL https://pyenv.run | bash; \
 		export PATH="$(HOME)/.pyenv/bin:$$PATH" && \
