@@ -14,7 +14,7 @@ DOTCONFIG_FILES := $(shell find $(DOTCONFIG_PATH) -type f)
 DOTCONFIG_TARGETS := $(DOTCONFIG_FILES:$(DOTCONFIG_PATH)/%=$(HOST_DOTCONFIG_PATH)/%)
 
 .DEFAULT_GOAL := all
-.PHONY: check-tools-installed install-tools vscode zsh nvim rust asdf autocommit autocommit-stop all
+.PHONY: check-tools-installed install-tools vscode zsh nvim rust asdf nvm autocommit autocommit-stop all
 
 $(HOST_DOTCONFIG_PATH)/%: $(DOTCONFIG_PATH)/%
 	@mkdir -p $(@D)
@@ -74,7 +74,16 @@ asdf:
 		echo "asdf already installed."; \
 	fi
 
-install-tools: rust asdf
+nvm:
+	@if [ ! -d "$(HOME)/.nvm" ]; then \
+		echo "Installing nvm..."; \
+		curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | PROFILE=/dev/null bash; \
+		. "$(HOME)/.nvm/nvm.sh" && nvm install --lts; \
+	else \
+		echo "nvm already installed."; \
+	fi
+
+install-tools: rust asdf nvm
 	$(eval UNINSTALLED_TOOLS := $(shell . "$(HOME)/.cargo/env" 2>/dev/null; make check-tools-installed))
 	@. "$(HOME)/.cargo/env" 2>/dev/null; \
 	for tool in $(UNINSTALLED_TOOLS); do \

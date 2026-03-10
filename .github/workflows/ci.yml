@@ -43,6 +43,20 @@ jobs:
             failed=1
           fi
 
+          if [ -d "$HOME/.nvm" ]; then
+            echo "  ✓ nvm"
+            . "$HOME/.nvm/nvm.sh"
+            if command -v node > /dev/null 2>&1; then
+              echo "  ✓ node $(node --version)"
+            else
+              echo "  ✗ node not found"
+              failed=1
+            fi
+          else
+            echo "  ✗ nvm not found"
+            failed=1
+          fi
+
           if [ "$failed" -eq 1 ]; then
             exit 1
           fi
