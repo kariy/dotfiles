@@ -14,7 +14,7 @@ DOTCONFIG_FILES := $(shell find $(DOTCONFIG_PATH) -type f)
 DOTCONFIG_TARGETS := $(DOTCONFIG_FILES:$(DOTCONFIG_PATH)/%=$(HOST_DOTCONFIG_PATH)/%)
 
 .DEFAULT_GOAL := all
-.PHONY: check-tools-installed install-tools vscode zsh nvim rust asdf all
+.PHONY: check-tools-installed install-tools vscode zsh nvim rust asdf autocommit autocommit-stop all
 
 $(HOST_DOTCONFIG_PATH)/%: $(DOTCONFIG_PATH)/%
 	@mkdir -p $(@D)
@@ -89,5 +89,37 @@ install-tools: rust asdf
 			fi \
 		fi \
 	done
+
+LAUNCHD_PLIST := $(HOME)/Library/LaunchAgents/com.dotfiles.autocommit.plist
+SYSTEMD_SERVICE := $(HOST_DOTCONFIG_PATH)/systemd/user/dotfiles-autocommit.service
+
+autocommit:
+	@if [[ "$(UNAME)" == "Darwin" ]]; then \
+		mkdir -p $(HOME)/Library/LaunchAgents; \
+		sed 's|__DOTFILE_PATH__|$(DOTFILE_PATH)|g' $(DOTFILE_PATH)/services/com.dotfiles.autocommit.plist > $(LAUNCHD_PLIST); \
+		launchctl bootout gui/$$(id -u) $(LAUNCHD_PLIST) 2>/dev/null || true; \
+		launchctl bootstrap gui/$$(id -u) $(LAUNCHD_PLIST); \
+		echo "Autocommit service started (launchd)."; \
+	elif [[ "$(UNAME)" == "Linux" ]]; then \
+		mkdir -p $(HOST_DOTCONFIG_PATH)/systemd/user; \
+		sed 's|__DOTFILE_PATH__|$(DOTFILE_PATH)|g' $(DOTFILE_PATH)/services/dotfiles-autocommit.service > $(SYSTEMD_SERVICE); \
+		systemctl --user daemon-reload; \
+		systemctl --user enable --now dotfiles-autocommit.service; \
+		echo "Autocommit service started (systemd)."; \
+	fi
+
+autocommit-stop:
+	@if [[ "$(UNAME)" == "Darwin" ]]; then \
+		launchctl bootout gui/$$(id -u) $(LAUNCHD_PLIST) 2>/dev/null && \
+		rm -f $(LAUNCHD_PLIST) && \
+		echo "Autocommit service stopped (launchd)." || \
+		echo "Autocommit service is not running."; \
+	elif [[ "$(UNAME)" == "Linux" ]]; then \
+		systemctl --user disable --now dotfiles-autocommit.service 2>/dev/null && \
+		rm -f $(SYSTEMD_SERVICE) && \
+		systemctl --user daemon-reload && \
+		echo "Autocommit service stopped (systemd)." || \
+		echo "Autocommit service is not running."; \
+	fi
 
 all: $(DOTCONFIG_TARGETS) git zsh nvim install-tools

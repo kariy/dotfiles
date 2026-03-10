@@ -1,0 +1,13 @@
+[Unit]
+Description=Dotfiles auto-commit watcher
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=__DOTFILE_PATH__/scripts/autocommit-watch.sh
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target
