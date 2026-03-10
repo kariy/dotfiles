@@ -150,7 +150,11 @@ tools: rust asdf nvm pyenv uv
 	fi
 	@if ! command -v dust > /dev/null 2>&1; then \
 		echo "Installing dust..."; \
-		curl -sSfL https://raw.githubusercontent.com/bootandy/dust/refs/heads/master/install.sh | sh; \
+		if [[ "$(UNAME)" == "Darwin" ]]; then \
+			brew install dust; \
+		else \
+			curl -sSfL https://raw.githubusercontent.com/bootandy/dust/refs/heads/master/install.sh | sh; \
+		fi \
 	else \
 		echo "dust already installed."; \
 	fi
