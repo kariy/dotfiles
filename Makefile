@@ -14,7 +14,7 @@ DOTCONFIG_FILES := $(shell find $(DOTCONFIG_PATH) -type f)
 DOTCONFIG_TARGETS := $(DOTCONFIG_FILES:$(DOTCONFIG_PATH)/%=$(HOST_DOTCONFIG_PATH)/%)
 
 .DEFAULT_GOAL := all
-.PHONY: check-tools-installed tools vscode zsh nvim rust asdf nvm dust agents autocommit autocommit-stop all
+.PHONY: check-tools-installed tools vscode zsh nvim rust asdf nvm agents autocommit autocommit-stop all
 
 $(HOST_DOTCONFIG_PATH)/%: $(DOTCONFIG_PATH)/%
 	@mkdir -p $(@D)
@@ -82,14 +82,6 @@ nvm:
 		echo "nvm already installed."; \
 	fi
 
-dust:
-	@if ! command -v dust > /dev/null 2>&1; then \
-		echo "Installing dust..."; \
-		curl -sSfL https://raw.githubusercontent.com/bootandy/dust/refs/heads/master/install.sh | sh; \
-	else \
-		echo "dust already installed."; \
-	fi
-
 agents: nvm
 	@if ! command -v claude > /dev/null 2>&1; then \
 		echo "Installing Claude Code..."; \
@@ -127,6 +119,12 @@ tools: rust asdf nvm
 			fi \
 		fi \
 	done
+	@if ! command -v dust > /dev/null 2>&1; then \
+		echo "Installing dust..."; \
+		curl -sSfL https://raw.githubusercontent.com/bootandy/dust/refs/heads/master/install.sh | sh; \
+	else \
+		echo "dust already installed."; \
+	fi
 
 LAUNCHD_PLIST := $(HOME)/Library/LaunchAgents/com.dotfiles.autocommit.plist
 SYSTEMD_SERVICE := $(HOST_DOTCONFIG_PATH)/systemd/user/dotfiles-autocommit.service
@@ -160,4 +158,4 @@ autocommit-stop:
 		echo "Autocommit service is not running."; \
 	fi
 
-all: $(DOTCONFIG_TARGETS) git zsh nvim tools dust agents
+all: $(DOTCONFIG_TARGETS) git zsh nvim tools agents
