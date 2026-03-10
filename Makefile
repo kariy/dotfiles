@@ -1,3 +1,4 @@
+SHELL := /bin/bash
 UNAME := $(shell uname)
 DOTFILE_PATH := $(shell pwd)
 
@@ -80,7 +81,7 @@ install-tools: rust asdf
 			. "$(HOME)/.cargo/env" && cargo install $$tool; \
 		elif echo "$(OTHER_TOOLS)" | grep -w $$tool > /dev/null; then \
 			if [[ "$(UNAME)" == "Linux" ]]; then \
-				sudo apt install $$tool; \
+				sudo apt install -y $$tool; \
 			elif [[ "$(UNAME)" == "Darwin" ]]; then \
 				brew install $$tool; \
 			fi \
