@@ -85,8 +85,12 @@ jobs:
             fi
           }
 
-          # dotfiles in home directory
-          check_symlink "$HOME/.zshrc" "$DOTFILE_PATH/zshrc"
+          # shell config (zshrc on macOS, bashrc on Linux)
+          if [ "$(uname)" = "Darwin" ]; then
+            check_symlink "$HOME/.zshrc" "$DOTFILE_PATH/zshrc"
+          else
+            check_symlink "$HOME/.bashrc" "$DOTFILE_PATH/zshrc"
+          fi
           check_symlink "$HOME/.gitconfig" "$DOTFILE_PATH/gitconfig"
           check_symlink "$HOME/.git-completion.bash" "$DOTFILE_PATH/git-completion.bash"
 

@@ -14,7 +14,7 @@ DOTCONFIG_FILES := $(shell find $(DOTCONFIG_PATH) -type f)
 DOTCONFIG_TARGETS := $(DOTCONFIG_FILES:$(DOTCONFIG_PATH)/%=$(HOST_DOTCONFIG_PATH)/%)
 
 .DEFAULT_GOAL := all
-.PHONY: check-tools-installed tools vscode zsh nvim rust asdf nvm pyenv uv agents autocommit autocommit-stop all
+.PHONY: check-tools-installed tools vscode shell nvim rust asdf nvm pyenv uv agents autocommit autocommit-stop all
 
 $(HOST_DOTCONFIG_PATH)/%: $(DOTCONFIG_PATH)/%
 	@mkdir -p $(@D)
@@ -23,7 +23,12 @@ $(HOST_DOTCONFIG_PATH)/%: $(DOTCONFIG_PATH)/%
 $(HOME)/.%: %
 	ln -sf $(DOTFILE_PATH)/$^ $@
 
-zsh: $(HOME)/.zshrc
+shell:
+	@if [[ "$(UNAME)" == "Darwin" ]]; then \
+		ln -sf $(DOTFILE_PATH)/zshrc $(HOME)/.zshrc; \
+	else \
+		ln -sf $(DOTFILE_PATH)/zshrc $(HOME)/.bashrc; \
+	fi
 	mkdir -p $(HOME)/.zsh
 	ln -sf $(DOTFILE_PATH)/zsh/_git $(HOME)/.zsh/_git
 
@@ -185,4 +190,4 @@ autocommit-stop:
 		echo "Autocommit service is not running."; \
 	fi
 
-all: $(DOTCONFIG_TARGETS) git zsh nvim tools agents
+all: $(DOTCONFIG_TARGETS) git shell nvim tools agents
