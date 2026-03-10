@@ -164,5 +164,5 @@ if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)
 alias claude='claude --dangerously-skip-permissions'
 alias codex='codex --dangerously-bypass-approvals-and-sandbox' 
 
-alias cc='claude'
+alias cl='claude'
 alias cx='codex'
