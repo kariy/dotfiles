@@ -44,7 +44,7 @@ vscode:
 	ln -sf $(DOTFILE_PATH)/vscode/keybindings.json $(VSCODE_CONFIG_PATH)/keybindings.json
 
 # Tools to install using cargo (Rust-based, consistent across platforms)
-CARGO_TOOLS = bat starship tokei fd-find eza hexyl zoxide zellij
+CARGO_TOOLS = bat starship tokei fd-find eza hexyl zoxide zellij worktrunk
 # Tools to install using apt or brew
 OTHER_TOOLS = btop fzf
 
@@ -145,6 +145,9 @@ tools: rust asdf nvm pyenv uv
 			fi \
 		fi \
 	done
+	@if command -v wt > /dev/null 2>&1; then \
+		wt config shell install; \
+	fi
 	@if ! command -v dust > /dev/null 2>&1; then \
 		echo "Installing dust..."; \
 		curl -sSfL https://raw.githubusercontent.com/bootandy/dust/refs/heads/master/install.sh | sh; \
