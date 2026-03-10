@@ -1,14 +1,26 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 set -euo pipefail
 
-REPO="/Users/kariy/dotfiles"
+REPO="$(cd "$(dirname "$0")/.." && pwd)"
 BRANCH="dotfiles"
 DEBOUNCE_SECONDS=30
 POLL_SECONDS=2
 LOCK_DIR="/tmp/dotfiles-autocommit.lock"
+LOG_FILE="${LOG_FILE:-/tmp/dotfiles-autocommit.log}"
+MAX_LOG_SIZE=$((1024 * 1024))  # 1MB
+MAX_PUSH_RETRIES=5
+
+push_failures=0
 
 log() {
-  printf '[%s] %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$*"
+  printf '[%s] %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$*" | tee -a "$LOG_FILE"
+}
+
+rotate_log() {
+  if [[ -f "$LOG_FILE" ]] && [[ "$(wc -c < "$LOG_FILE")" -gt "$MAX_LOG_SIZE" ]]; then
+    mv "$LOG_FILE" "$LOG_FILE.old"
+    log "Log rotated."
+  fi
 }
 
 cleanup() {
@@ -32,13 +44,13 @@ if ! git -C "$REPO" config user.name >/dev/null || ! git -C "$REPO" config user.
 fi
 
 snapshot_signature() {
-  # Build a stable signature from file mtimes + path, excluding .git internals.
-  find "$REPO" -type f ! -path "$REPO/.git/*" -print0 \
-    | xargs -0 stat -f '%m %N' \
-    | LC_ALL=C sort \
-    | shasum -a 256 \
-    | awk '{print $1}'
+  git -C "$REPO" status --porcelain 2>/dev/null | sha256sum | awk '{print $1}'
 }
+
+# sha256sum is not available on macOS by default, use shasum -a 256 instead
+if ! command -v sha256sum >/dev/null 2>&1; then
+  sha256sum() { shasum -a 256 "$@"; }
+fi
 
 is_repo_busy() {
   [[ -f "$REPO/.git/index.lock" ]] \
@@ -74,17 +86,32 @@ commit_and_push() {
 
   if git -C "$REPO" push origin "$BRANCH"; then
     log "Pushed commit to origin/$BRANCH"
+    push_failures=0
   else
-    log "Push failed (commit kept locally). Will retry on next change cycle."
+    push_failures=$((push_failures + 1))
+    if [[ "$push_failures" -ge "$MAX_PUSH_RETRIES" ]]; then
+      log "Push failed $push_failures times in a row; giving up. Commits are kept locally."
+      push_failures=0
+    else
+      log "Push failed (attempt $push_failures/$MAX_PUSH_RETRIES). Will retry on next change cycle."
+    fi
   fi
 }
 
 log "Starting dotfiles auto-commit watcher for $REPO"
 last_signature="$(snapshot_signature)"
 last_change_epoch=0
+cycles_since_rotation=0
 
 while true; do
   sleep "$POLL_SECONDS"
+
+  # Rotate log periodically (every ~5 minutes)
+  cycles_since_rotation=$((cycles_since_rotation + 1))
+  if (( cycles_since_rotation >= 150 )); then
+    rotate_log
+    cycles_since_rotation=0
+  fi
 
   current_signature="$(snapshot_signature)"
   if [[ "$current_signature" != "$last_signature" ]]; then
