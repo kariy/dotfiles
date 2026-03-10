@@ -39,7 +39,7 @@ vscode:
 	ln -sf $(DOTFILE_PATH)/vscode/keybindings.json $(VSCODE_CONFIG_PATH)/keybindings.json
 
 # Tools to install using cargo (Rust-based, consistent across platforms)
-CARGO_TOOLS = bat starship tokei fd-find eza hexyl zoxide
+CARGO_TOOLS = bat starship tokei fd-find eza hexyl zoxide zellij
 # Tools to install using apt or brew
 OTHER_TOOLS = btop fzf
 
