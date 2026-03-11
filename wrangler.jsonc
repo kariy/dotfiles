@@ -4,7 +4,7 @@
   "compatibility_date": "2024-01-01",
   "routes": [
     {
-      "pattern": "lactoseintolerant.dev/install.sh",
+      "pattern": "get.lactoseintolerant.dev/*",
       "zone_name": "lactoseintolerant.dev"
     }
   ]
