@@ -1,0 +1,11 @@
+{
+  "name": "dotfiles-install",
+  "main": "worker/index.js",
+  "compatibility_date": "2024-01-01",
+  "routes": [
+    {
+      "pattern": "lactoseintolerant.dev/install.sh",
+      "zone_name": "lactoseintolerant.dev"
+    }
+  ]
+}
