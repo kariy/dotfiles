@@ -20,7 +20,7 @@
 		"diagnostics": false,
 		"metrics": false,
 	},
-	"theme": "Rosé Pine Moon",
+	"theme": "Catppuccin Espresso (Blur)",
 	"experimental.theme_overrides": {
 		"syntax": {},
 	},
