@@ -20,7 +20,7 @@
 		"diagnostics": false,
 		"metrics": false,
 	},
-	"theme": "Catppuccin Espresso (Blur)",
+	"theme": "Catppuccin Mocha (Blur) [Light]",
 	"experimental.theme_overrides": {
 		"syntax": {},
 	},
