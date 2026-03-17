@@ -16,7 +16,7 @@ fmt_error()   { printf '\033[1;31m:: %s\033[0m\n' "$*" >&2; }
 confirm() {
   if $AUTO_YES; then return 0; fi
   printf '\033[1;33m:: %s [Y/n] \033[0m' "$1"
-  read -r reply
+  read -r reply < /dev/tty
   case "$reply" in
     [nN]*) return 1 ;;
     *) return 0 ;;
@@ -45,7 +45,7 @@ select_components() {
   done
   echo ""
   printf '\033[1;33m:: Choice [a]: \033[0m'
-  read -r choices
+  read -r choices < /dev/tty
 
   SELECTED=()
   if [ -z "$choices" ] || [ "$choices" = "a" ] || [ "$choices" = "A" ]; then
