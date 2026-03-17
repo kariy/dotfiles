@@ -14,7 +14,7 @@ DOTCONFIG_FILES := $(shell find $(DOTCONFIG_PATH) -type f)
 DOTCONFIG_TARGETS := $(DOTCONFIG_FILES:$(DOTCONFIG_PATH)/%=$(HOST_DOTCONFIG_PATH)/%)
 
 .DEFAULT_GOAL := all
-.PHONY: check-tools-installed tools vscode shell nvim rust asdf nvm bun pyenv uv agents autocommit autocommit-stop dotconfig all
+.PHONY: check-tools-installed tools vscode shell nvim rust asdf nvm bun pyenv uv agents autocommit autocommit-stop dotconfig dotfiles all
 
 dotconfig: $(DOTCONFIG_TARGETS)
 
@@ -213,4 +213,6 @@ autocommit-stop:
 		echo "Autocommit service is not running."; \
 	fi
 
-all: dotconfig git shell nvim tools agents
+dotfiles: dotconfig git shell nvim
+
+all: dotfiles tools agents
