@@ -149,7 +149,7 @@ TARGETS=(
   "git"
   "nvim"
   "vscode"
-  "\$(DOTCONFIG_TARGETS)"
+  "dotconfig"
   "tools"
   "agents"
   "autocommit"
