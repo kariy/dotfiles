@@ -3,14 +3,7 @@
   "main": "worker/index.js",
   "compatibility_date": "2024-01-01",
   "workers_dev": true,
-  "rules": [
-    {
-      "type": "Text",
-      "globs": ["**/*.sh"],
-      "fallthrough": false
-    }
-  ],
-  "routes": [
+"routes": [
     {
       "pattern": "env.lactoseintolerant.dev/*",
       "zone_name": "lactoseintolerant.dev"

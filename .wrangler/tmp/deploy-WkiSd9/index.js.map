@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "sources": ["../../../worker/index.js"],
+  "sourceRoot": "/Users/kerry/dotfiles/.wrangler/tmp/deploy-WkiSd9",
+  "sourcesContent": ["const RAW_URL =\n  \"https://raw.githubusercontent.com/kariy/dotfiles/dotfiles/scripts/install.sh\";\n\nexport default {\n  async fetch() {\n    const res = await fetch(RAW_URL);\n    return new Response(res.body, {\n      headers: {\n        \"content-type\": \"text/plain; charset=utf-8\",\n        \"cache-control\": \"public, max-age=300\",\n      },\n    });\n  },\n};\n"],
+  "mappings": ";AAAA,IAAM,UACJ;AAEF,IAAO,gBAAQ;AAAA,EACb,MAAM,QAAQ;AACZ,UAAM,MAAM,MAAM,MAAM,OAAO;AAC/B,WAAO,IAAI,SAAS,IAAI,MAAM;AAAA,MAC5B,SAAS;AAAA,QACP,gBAAgB;AAAA,QAChB,iBAAiB;AAAA,MACnB;AAAA,IACF,CAAC;AAAA,EACH;AACF;",
+  "names": []
+}
