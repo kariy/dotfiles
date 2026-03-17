@@ -8,3 +8,15 @@
  ########::. #######::::: ##:::: ##:::::::'####: ########: ########:. ######::
 ........::::.......::::::..:::::..::::::::....::........::........:::......:::
 ```
+
+## Install
+
+```bash
+curl -fsSL https://env.lactoseintolerant.dev/install.sh | bash
+```
+
+To skip prompts and install everything:
+
+```bash
+curl -fsSL https://env.lactoseintolerant.dev/install.sh | bash -s -- -y
+```
