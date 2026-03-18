@@ -20,7 +20,7 @@
 		"diagnostics": false,
 		"metrics": false,
 	},
-	"theme": "Catppuccin Espresso (Blur) [Heavy]",
+	"theme": "Gruvbox Light",
 	"experimental.theme_overrides": {
 		"syntax": {},
 	},
