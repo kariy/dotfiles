@@ -20,7 +20,7 @@
 		"diagnostics": false,
 		"metrics": false,
 	},
-	"theme": "Gruvbox Light",
+	"theme": "Catppuccin Mocha (Blur) [Heavy]",
 	"experimental.theme_overrides": {
 		"syntax": {},
 	},
