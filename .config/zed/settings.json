@@ -7,7 +7,21 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-	"sticky_scroll": {
+	"ssh_connections": [
+  {
+   "host": "185.26.9.71",
+   "username": "ubuntu",
+   "args": [],
+   "projects": [
+    {
+     "paths": [
+      "/home/ubuntu/katana"
+     ]
+    }
+   ]
+  }
+ ],
+ "sticky_scroll": {
 		"enabled": true,
 	},
 	"languages": {
