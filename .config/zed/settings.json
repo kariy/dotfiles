@@ -37,7 +37,7 @@
 		"diagnostics": false,
 		"metrics": false,
 	},
-	"theme": "Catppuccin Mocha (Blur) [Heavy]",
+	"theme": "Rosé Pine Moon",
 	"experimental.theme_overrides": {
 		"syntax": {},
 	},
