@@ -7,7 +7,12 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-	"git_panel": {
+	"icon_theme": {
+  "mode": "light",
+  "light": "Zed (Default)",
+  "dark": "Zed (Default)"
+ },
+ "git_panel": {
   "tree_view": true
  },
  "ssh_connections": [
@@ -37,7 +42,11 @@
 		"diagnostics": false,
 		"metrics": false,
 	},
-	"theme": "Rosé Pine Moon",
+	"theme": {
+  "mode": "dark",
+  "light": "One Light",
+  "dark": "Catppuccin Espresso (Blur)"
+ },
 	"experimental.theme_overrides": {
 		"syntax": {},
 	},
