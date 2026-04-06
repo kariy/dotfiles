@@ -45,7 +45,7 @@
 	"theme": {
   "mode": "dark",
   "light": "One Light",
-  "dark": "Catppuccin Espresso (Blur)"
+  "dark": "Catppuccin Macchiato (Blur) [Heavy]"
  },
 	"experimental.theme_overrides": {
 		"syntax": {},
