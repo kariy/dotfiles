@@ -43,9 +43,9 @@
 		"metrics": false,
 	},
 	"theme": {
-  "mode": "light",
+  "mode": "dark",
   "light": "Catppuccin Iced Latte (Blur)",
-  "dark": "Catppuccin Macchiato (Blur) [Heavy]"
+  "dark": "Catppuccin Mocha (Blur) [Heavy]"
  },
 	"experimental.theme_overrides": {
 		"syntax": {},
