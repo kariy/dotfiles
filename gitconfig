@@ -8,3 +8,7 @@
 	required = true
 [init]
 	defaultBranch = main
+[url "https://github.com/cartridge-gg/katana-tee.git"]
+	insteadOf = ssh://git@github.com/cartridge-gg/katana-tee.git
+[url "https://github.com/cartridge-gg/katana-tee"]
+	insteadOf = ssh://git@github.com/cartridge-gg/katana-tee
