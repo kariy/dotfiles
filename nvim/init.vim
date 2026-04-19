@@ -19,6 +19,23 @@ vim.lsp.config("ts_ls", {
 })
 vim.lsp.enable("ts_ls")
 
+vim.filetype.add({
+  extension = {
+    str = "strudel",
+    std = "strudel",
+  },
+})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "strudel",
+  callback = function() vim.bo.syntax = "javascript" end,
+})
+vim.lsp.config("strudel_ls", {
+  cmd = { vim.fn.expand("~/Projects/strudel-language-server/dist/server.cjs"), "--stdio" },
+  filetypes = { "strudel" },
+  root_markers = { "package.json", ".git" },
+})
+vim.lsp.enable("strudel_ls")
+
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
