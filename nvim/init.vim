@@ -19,11 +19,9 @@ vim.lsp.config("ts_ls", {
 })
 vim.lsp.enable("ts_ls")
 
-vim.filetype.add({
-  extension = {
-    str = "strudel",
-    std = "strudel",
-  },
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.str", "*.std" },
+  callback = function() vim.bo.filetype = "strudel" end,
 })
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "strudel",
