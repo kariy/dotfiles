@@ -7,12 +7,33 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-	"icon_theme": {
+	"agent_servers": {
+  "amp-acp": {
+   "type": "registry"
+  },
+  "codex-acp": {
+   "type": "registry"
+  },
+  "claude-acp": {
+   "type": "registry"
+  }
+ },
+ "project_panel": {
+  "dock": "right"
+ },
+ "outline_panel": {
+  "dock": "right"
+ },
+ "collaboration_panel": {
+  "dock": "right"
+ },
+ "icon_theme": {
   "mode": "light",
   "light": "Zed (Default)",
   "dark": "Zed (Default)"
  },
  "git_panel": {
+  "dock": "right",
   "tree_view": true
  },
  "ssh_connections": [
@@ -77,7 +98,8 @@
 		"right_padding": 0.09,
 	},
 	"agent": {
-		"provider": {
+		"dock": "left",
+  "provider": {
 			"default_model": "claude-3-5-sonnet-20240620",
 			"name": "anthropic",
 			"type": "anthropic",
