@@ -65,9 +65,9 @@
 		"metrics": false,
 	},
 	"theme": {
-  "mode": "light",
+  "mode": "dark",
   "light": "One Light",
-  "dark": "Catppuccin Mocha (Blur) [Heavy]"
+  "dark": "Rosé Pine"
  },
 	"experimental.theme_overrides": {
 		"syntax": {},
