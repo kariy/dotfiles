@@ -29,7 +29,7 @@
   "dock": "right"
  },
  "icon_theme": {
-  "mode": "light",
+  "mode": "dark",
   "light": "Zed (Default)",
   "dark": "Zed (Default)"
  },
@@ -67,7 +67,7 @@
 	"theme": {
   "mode": "dark",
   "light": "One Light",
-  "dark": "Rosé Pine"
+  "dark": "Catppuccin Mocha (Blur) [Heavy]"
  },
 	"experimental.theme_overrides": {
 		"syntax": {},
