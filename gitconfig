@@ -12,3 +12,9 @@
 	insteadOf = ssh://git@github.com/cartridge-gg/katana-tee.git
 [url "https://github.com/cartridge-gg/katana-tee"]
 	insteadOf = ssh://git@github.com/cartridge-gg/katana-tee
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
