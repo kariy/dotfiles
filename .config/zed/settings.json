@@ -29,7 +29,7 @@
   "dock": "right"
  },
  "icon_theme": {
-  "mode": "dark",
+  "mode": "light",
   "light": "Zed (Default)",
   "dark": "Zed (Default)"
  },
@@ -65,8 +65,8 @@
 		"metrics": false,
 	},
 	"theme": {
-  "mode": "dark",
-  "light": "One Light",
+  "mode": "light",
+  "light": "Rosé Pine Dawn",
   "dark": "Rosé Pine"
  },
 	"experimental.theme_overrides": {
