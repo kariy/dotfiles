@@ -65,9 +65,9 @@
 		"metrics": false,
 	},
 	"theme": {
-  "mode": "light",
+  "mode": "dark",
   "light": "Rosé Pine Dawn",
-  "dark": "Rosé Pine"
+  "dark": "Ayu Dark"
  },
 	"experimental.theme_overrides": {
 		"syntax": {},
