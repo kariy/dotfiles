@@ -13,6 +13,7 @@ make                  # Install everything (default target is `all`)
 make zsh              # Symlink zsh config only
 make git              # Symlink git config only
 make nvim             # Symlink neovim config only
+make claude           # Symlink global Claude Code instructions (claude/CLAUDE.md -> ~/.claude/CLAUDE.md)
 make vscode           # Symlink VS Code config only
 make install-tools    # Install cargo/brew/apt tools (depends on rust, asdf targets)
 make autocommit       # Start auto-commit background service (launchd/systemd)
@@ -23,7 +24,7 @@ CI runs on push/PR to the `dotfiles` branch, testing on both `ubuntu-latest` and
 
 ## Architecture
 
-**Symlink strategy**: The Makefile creates symlinks from standard config locations back to this repo. Files under `.config/` are auto-discovered via `find` and symlinked to `~/.config/`. Top-level dotfiles (zshrc, gitconfig) use a pattern rule `$(HOME)/.%: %` to map `file` → `~/.file`. The `nvim/` directory is an exception — it lives at the repo root but symlinks to `~/.config/nvim/`.
+**Symlink strategy**: The Makefile creates symlinks from standard config locations back to this repo. Files under `.config/` are auto-discovered via `find` and symlinked to `~/.config/`. Top-level dotfiles (zshrc, gitconfig) use a pattern rule `$(HOME)/.%: %` to map `file` → `~/.file`. The `nvim/` directory is an exception — it lives at the repo root but symlinks to `~/.config/nvim/`. `claude/CLAUDE.md` is the global Claude Code instructions file; the `claude` target (part of `dotfiles`) symlinks it to `~/.claude/CLAUDE.md`.
 
 **Tool installation**: Rust-based tools (bat, starship, tokei, fd-find, eza, hexyl, zoxide) are installed via `cargo` on all platforms for consistency. Only btop and fzf use platform-specific package managers (apt/brew).
 
