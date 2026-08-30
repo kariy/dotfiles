@@ -14,7 +14,7 @@ DOTCONFIG_FILES := $(shell find $(DOTCONFIG_PATH) -type f)
 DOTCONFIG_TARGETS := $(DOTCONFIG_FILES:$(DOTCONFIG_PATH)/%=$(HOST_DOTCONFIG_PATH)/%)
 
 .DEFAULT_GOAL := all
-.PHONY: check-tools-installed tools vscode shell nvim rust asdf nvm bun pyenv uv agents autocommit autocommit-stop dotconfig dotfiles all
+.PHONY: check-tools-installed tools vscode shell nvim claude rust asdf nvm bun pyenv uv agents autocommit autocommit-stop dotconfig dotfiles all
 
 dotconfig: $(DOTCONFIG_TARGETS)
 
@@ -39,6 +39,12 @@ git: $(HOME)/.gitconfig $(HOME)/.git-completion.bash
 nvim:
 	mkdir -p $(HOST_DOTCONFIG_PATH)/nvim
 	ln -sf $(DOTFILE_PATH)/nvim/init.vim $(HOST_DOTCONFIG_PATH)/nvim/init.vim
+
+# Global Claude Code instructions (~/.claude/CLAUDE.md), loaded in every session.
+# Skills live in the separate kariy/skills repo (see its README for the symlinks).
+claude:
+	mkdir -p $(HOME)/.claude
+	ln -sf $(DOTFILE_PATH)/claude/CLAUDE.md $(HOME)/.claude/CLAUDE.md
 
 vscode:
 	mkdir -p $(VSCODE_CONFIG_PATH)
@@ -213,6 +219,6 @@ autocommit-stop:
 		echo "Autocommit service is not running."; \
 	fi
 
-dotfiles: dotconfig git shell nvim
+dotfiles: dotconfig git shell nvim claude
 
 all: dotfiles tools agents
